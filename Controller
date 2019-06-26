@@ -1,0 +1,51 @@
+package sample;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
+
+import java.util.ArrayList;
+
+public class Controller {
+
+    @FXML
+    ComboBox comboBox1, comboBox2, comboBox3;
+
+    @FXML
+    void initialize(){
+        ObservableList<Integer> combo_list1 = FXCollections.observableList(new ArrayList<>());
+        combo_list1.add(1);
+        combo_list1.add(2);
+
+        comboBox1.setItems(combo_list1);
+
+        ObservableList<String> list1 = FXCollections.observableList(new ArrayList<>());
+        list1.add("qwe");
+        list1.add("QWE");
+
+        ObservableList<String> list2 = FXCollections.observableList(new ArrayList<>());
+        list2.add("ASD");
+        list2.add("asd");
+
+        comboBox1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                int value = (int) comboBox1.getValue();
+
+                switch (value){
+                    case 1:
+                        comboBox2.setItems(list1);
+                        comboBox3.setItems(list1);
+                        break;
+                    case 2:
+                        comboBox2.setItems(list2);
+                        comboBox3.setItems(list2);
+                        break;
+                }
+            }
+        });
+    }
+}
